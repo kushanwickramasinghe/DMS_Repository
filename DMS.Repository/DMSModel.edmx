@@ -1,0 +1,810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DMSModelStoreContainer">
+          <EntitySet Name="tblAppoiment" EntityType="DMSModel.Store.tblAppoiment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDoctor" EntityType="DMSModel.Store.tblDoctor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDoctorType" EntityType="DMSModel.Store.tblDoctorType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEmployee" EntityType="DMSModel.Store.tblEmployee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblInsurance" EntityType="DMSModel.Store.tblInsurance" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblInvoice" EntityType="DMSModel.Store.tblInvoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblLogin" EntityType="DMSModel.Store.tblLogin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblOfficeVisit" EntityType="DMSModel.Store.tblOfficeVisit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPatient" EntityType="DMSModel.Store.tblPatient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblProcedure" EntityType="DMSModel.Store.tblProcedure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserType" EntityType="DMSModel.Store.tblUserType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblDoctor_tblAppoinment" Association="DMSModel.Store.FK_tblDoctor_tblAppoinment">
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+            <End Role="tblAppoiment" EntitySet="tblAppoiment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDoctor_tblProcedure" Association="DMSModel.Store.FK_tblDoctor_tblProcedure">
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+            <End Role="tblProcedure" EntitySet="tblProcedure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDoctorType_tblDoctor" Association="DMSModel.Store.FK_tblDoctorType_tblDoctor">
+            <End Role="tblDoctorType" EntitySet="tblDoctorType" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblDoctor" Association="DMSModel.Store.FK_tblLogin_tblDoctor">
+            <End Role="tblLogin" EntitySet="tblLogin" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblEmployee" Association="DMSModel.Store.FK_tblLogin_tblEmployee">
+            <End Role="tblLogin" EntitySet="tblLogin" />
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblUserType" Association="DMSModel.Store.FK_tblLogin_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblLogin" EntitySet="tblLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblAppoinment" Association="DMSModel.Store.FK_tblOfficeVisit_tblAppoinment">
+            <End Role="tblAppoiment" EntitySet="tblAppoiment" />
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblInvoice" Association="DMSModel.Store.FK_tblOfficeVisit_tblInvoice">
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisit" />
+            <End Role="tblInvoice" EntitySet="tblInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblProcedure" Association="DMSModel.Store.FK_tblOfficeVisit_tblProcedure">
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisit" />
+            <End Role="tblProcedure" EntitySet="tblProcedure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblAppoinment" Association="DMSModel.Store.FK_tblPatient_tblAppoinment">
+            <End Role="tblPatient" EntitySet="tblPatient" />
+            <End Role="tblAppoiment" EntitySet="tblAppoiment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblInsurance" Association="DMSModel.Store.FK_tblPatient_tblInsurance">
+            <End Role="tblPatient" EntitySet="tblPatient" />
+            <End Role="tblInsurance" EntitySet="tblInsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblOfficeVisit" Association="DMSModel.Store.FK_tblPatient_tblOfficeVisit">
+            <End Role="tblPatient" EntitySet="tblPatient" />
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisit" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAppoiment">
+          <Key>
+            <PropertyRef Name="AppoinmentNo" />
+          </Key>
+          <Property Name="AppoinmentNo" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="PatientId" Type="bigint" Nullable="false" />
+          <Property Name="DoctorAssigned" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDoctor">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="HourlyRate" Type="decimal" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="Specialization" Type="varchar" MaxLength="15" />
+          <Property Name="DoctorTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDoctorType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="LoginId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInsurance">
+          <Key>
+            <PropertyRef Name="PolicyNo" />
+          </Key>
+          <Property Name="PolicyNo" Type="bigint" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Telephone" Type="bigint" />
+          <Property Name="ContractPrecentage" Type="int" Nullable="false" />
+          <Property Name="PatientId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TotalCharge" Type="money" Nullable="false" />
+          <Property Name="DirectPayment" Type="money" Nullable="false" />
+          <Property Name="InsurancePayment" Type="money" Nullable="false" />
+          <Property Name="VisitId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Password" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOfficeVisit">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Illness" Type="varchar(max)" Nullable="false" />
+          <Property Name="ToothInvolved" Type="varchar" MaxLength="50" />
+          <Property Name="TotalCharge" Type="money" Nullable="false" />
+          <Property Name="AppoinmentNo" Type="bigint" Nullable="false" />
+          <Property Name="PatientId" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPatient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="FirstVisit" Type="date" />
+        </EntityType>
+        <EntityType Name="tblProcedure">
+          <Key>
+            <PropertyRef Name="ProcedureId" />
+          </Key>
+          <Property Name="ProcedureId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfProcedure" Type="varchar(max)" Nullable="false" />
+          <Property Name="NoOfHrs" Type="decimal" Nullable="false" />
+          <Property Name="AmountCharged" Type="money" Nullable="false" />
+          <Property Name="StaffId" Type="bigint" Nullable="false" />
+          <Property Name="VisitId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="UserType" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_tblDoctor_tblAppoinment">
+          <End Role="tblDoctor" Type="DMSModel.Store.tblDoctor" Multiplicity="1" />
+          <End Role="tblAppoiment" Type="DMSModel.Store.tblAppoiment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctor">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="tblAppoiment">
+              <PropertyRef Name="DoctorAssigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDoctor_tblProcedure">
+          <End Role="tblDoctor" Type="DMSModel.Store.tblDoctor" Multiplicity="1" />
+          <End Role="tblProcedure" Type="DMSModel.Store.tblProcedure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctor">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="tblProcedure">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDoctorType_tblDoctor">
+          <End Role="tblDoctorType" Type="DMSModel.Store.tblDoctorType" Multiplicity="1" />
+          <End Role="tblDoctor" Type="DMSModel.Store.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctorType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DoctorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblDoctor">
+          <End Role="tblLogin" Type="DMSModel.Store.tblLogin" Multiplicity="1" />
+          <End Role="tblDoctor" Type="DMSModel.Store.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLogin">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblEmployee">
+          <End Role="tblLogin" Type="DMSModel.Store.tblLogin" Multiplicity="1" />
+          <End Role="tblEmployee" Type="DMSModel.Store.tblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLogin">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblEmployee">
+              <PropertyRef Name="LoginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblUserType">
+          <End Role="tblUserType" Type="DMSModel.Store.tblUserType" Multiplicity="1" />
+          <End Role="tblLogin" Type="DMSModel.Store.tblLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="tblLogin">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblAppoinment">
+          <End Role="tblAppoiment" Type="DMSModel.Store.tblAppoiment" Multiplicity="1" />
+          <End Role="tblOfficeVisit" Type="DMSModel.Store.tblOfficeVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAppoiment">
+              <PropertyRef Name="AppoinmentNo" />
+            </Principal>
+            <Dependent Role="tblOfficeVisit">
+              <PropertyRef Name="AppoinmentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblInvoice">
+          <End Role="tblOfficeVisit" Type="DMSModel.Store.tblOfficeVisit" Multiplicity="1" />
+          <End Role="tblInvoice" Type="DMSModel.Store.tblInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOfficeVisit">
+              <PropertyRef Name="VisitId" />
+            </Principal>
+            <Dependent Role="tblInvoice">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblProcedure">
+          <End Role="tblOfficeVisit" Type="DMSModel.Store.tblOfficeVisit" Multiplicity="1" />
+          <End Role="tblProcedure" Type="DMSModel.Store.tblProcedure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOfficeVisit">
+              <PropertyRef Name="VisitId" />
+            </Principal>
+            <Dependent Role="tblProcedure">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblAppoinment">
+          <End Role="tblPatient" Type="DMSModel.Store.tblPatient" Multiplicity="1" />
+          <End Role="tblAppoiment" Type="DMSModel.Store.tblAppoiment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblAppoiment">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblInsurance">
+          <End Role="tblPatient" Type="DMSModel.Store.tblPatient" Multiplicity="1" />
+          <End Role="tblInsurance" Type="DMSModel.Store.tblInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblInsurance">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblOfficeVisit">
+          <End Role="tblPatient" Type="DMSModel.Store.tblPatient" Multiplicity="1" />
+          <End Role="tblOfficeVisit" Type="DMSModel.Store.tblOfficeVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblOfficeVisit">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DMSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DMSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAppoiments" EntityType="DMSModel.tblAppoiment" />
+          <EntitySet Name="tblDoctors" EntityType="DMSModel.tblDoctor" />
+          <EntitySet Name="tblDoctorTypes" EntityType="DMSModel.tblDoctorType" />
+          <EntitySet Name="tblEmployees" EntityType="DMSModel.tblEmployee" />
+          <EntitySet Name="tblInsurances" EntityType="DMSModel.tblInsurance" />
+          <EntitySet Name="tblInvoices" EntityType="DMSModel.tblInvoice" />
+          <EntitySet Name="tblLogins" EntityType="DMSModel.tblLogin" />
+          <EntitySet Name="tblOfficeVisits" EntityType="DMSModel.tblOfficeVisit" />
+          <EntitySet Name="tblPatients" EntityType="DMSModel.tblPatient" />
+          <EntitySet Name="tblProcedures" EntityType="DMSModel.tblProcedure" />
+          <EntitySet Name="tblUserTypes" EntityType="DMSModel.tblUserType" />
+          <AssociationSet Name="FK_tblDoctor_tblAppoinment" Association="DMSModel.FK_tblDoctor_tblAppoinment">
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+            <End Role="tblAppoiment" EntitySet="tblAppoiments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblAppoinment" Association="DMSModel.FK_tblOfficeVisit_tblAppoinment">
+            <End Role="tblAppoiment" EntitySet="tblAppoiments" />
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblAppoinment" Association="DMSModel.FK_tblPatient_tblAppoinment">
+            <End Role="tblPatient" EntitySet="tblPatients" />
+            <End Role="tblAppoiment" EntitySet="tblAppoiments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDoctor_tblProcedure" Association="DMSModel.FK_tblDoctor_tblProcedure">
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+            <End Role="tblProcedure" EntitySet="tblProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDoctorType_tblDoctor" Association="DMSModel.FK_tblDoctorType_tblDoctor">
+            <End Role="tblDoctorType" EntitySet="tblDoctorTypes" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblDoctor" Association="DMSModel.FK_tblLogin_tblDoctor">
+            <End Role="tblLogin" EntitySet="tblLogins" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblEmployee" Association="DMSModel.FK_tblLogin_tblEmployee">
+            <End Role="tblLogin" EntitySet="tblLogins" />
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblInsurance" Association="DMSModel.FK_tblPatient_tblInsurance">
+            <End Role="tblPatient" EntitySet="tblPatients" />
+            <End Role="tblInsurance" EntitySet="tblInsurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblInvoice" Association="DMSModel.FK_tblOfficeVisit_tblInvoice">
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisits" />
+            <End Role="tblInvoice" EntitySet="tblInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_tblUserType" Association="DMSModel.FK_tblLogin_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblLogin" EntitySet="tblLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOfficeVisit_tblProcedure" Association="DMSModel.FK_tblOfficeVisit_tblProcedure">
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisits" />
+            <End Role="tblProcedure" EntitySet="tblProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPatient_tblOfficeVisit" Association="DMSModel.FK_tblPatient_tblOfficeVisit">
+            <End Role="tblPatient" EntitySet="tblPatients" />
+            <End Role="tblOfficeVisit" EntitySet="tblOfficeVisits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAppoiment">
+          <Key>
+            <PropertyRef Name="AppoinmentNo" />
+          </Key>
+          <Property Name="AppoinmentNo" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="PatientId" Type="Int64" Nullable="false" />
+          <Property Name="DoctorAssigned" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblDoctor" Relationship="DMSModel.FK_tblDoctor_tblAppoinment" FromRole="tblAppoiment" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblOfficeVisits" Relationship="DMSModel.FK_tblOfficeVisit_tblAppoinment" FromRole="tblAppoiment" ToRole="tblOfficeVisit" />
+          <NavigationProperty Name="tblPatient" Relationship="DMSModel.FK_tblPatient_tblAppoinment" FromRole="tblAppoiment" ToRole="tblPatient" />
+        </EntityType>
+        <EntityType Name="tblDoctor">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="HourlyRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="Specialization" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DoctorTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblAppoiments" Relationship="DMSModel.FK_tblDoctor_tblAppoinment" FromRole="tblDoctor" ToRole="tblAppoiment" />
+          <NavigationProperty Name="tblProcedures" Relationship="DMSModel.FK_tblDoctor_tblProcedure" FromRole="tblDoctor" ToRole="tblProcedure" />
+          <NavigationProperty Name="tblDoctorType" Relationship="DMSModel.FK_tblDoctorType_tblDoctor" FromRole="tblDoctor" ToRole="tblDoctorType" />
+          <NavigationProperty Name="tblLogin" Relationship="DMSModel.FK_tblLogin_tblDoctor" FromRole="tblDoctor" ToRole="tblLogin" />
+        </EntityType>
+        <EntityType Name="tblDoctorType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblDoctors" Relationship="DMSModel.FK_tblDoctorType_tblDoctor" FromRole="tblDoctorType" ToRole="tblDoctor" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="LoginId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblLogin" Relationship="DMSModel.FK_tblLogin_tblEmployee" FromRole="tblEmployee" ToRole="tblLogin" />
+        </EntityType>
+        <EntityType Name="tblInsurance">
+          <Key>
+            <PropertyRef Name="PolicyNo" />
+          </Key>
+          <Property Name="PolicyNo" Type="Int64" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Telephone" Type="Int64" />
+          <Property Name="ContractPrecentage" Type="Int32" Nullable="false" />
+          <Property Name="PatientId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblPatient" Relationship="DMSModel.FK_tblPatient_tblInsurance" FromRole="tblInsurance" ToRole="tblPatient" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="DirectPayment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="InsurancePayment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="VisitId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblOfficeVisit" Relationship="DMSModel.FK_tblOfficeVisit_tblInvoice" FromRole="tblInvoice" ToRole="tblOfficeVisit" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblDoctors" Relationship="DMSModel.FK_tblLogin_tblDoctor" FromRole="tblLogin" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblEmployees" Relationship="DMSModel.FK_tblLogin_tblEmployee" FromRole="tblLogin" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblUserType" Relationship="DMSModel.FK_tblLogin_tblUserType" FromRole="tblLogin" ToRole="tblUserType" />
+        </EntityType>
+        <EntityType Name="tblOfficeVisit">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Illness" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ToothInvolved" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TotalCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AppoinmentNo" Type="Int64" Nullable="false" />
+          <Property Name="PatientId" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAppoiment" Relationship="DMSModel.FK_tblOfficeVisit_tblAppoinment" FromRole="tblOfficeVisit" ToRole="tblAppoiment" />
+          <NavigationProperty Name="tblInvoices" Relationship="DMSModel.FK_tblOfficeVisit_tblInvoice" FromRole="tblOfficeVisit" ToRole="tblInvoice" />
+          <NavigationProperty Name="tblProcedures" Relationship="DMSModel.FK_tblOfficeVisit_tblProcedure" FromRole="tblOfficeVisit" ToRole="tblProcedure" />
+          <NavigationProperty Name="tblPatient" Relationship="DMSModel.FK_tblPatient_tblOfficeVisit" FromRole="tblOfficeVisit" ToRole="tblPatient" />
+        </EntityType>
+        <EntityType Name="tblPatient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="FirstVisit" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblAppoiments" Relationship="DMSModel.FK_tblPatient_tblAppoinment" FromRole="tblPatient" ToRole="tblAppoiment" />
+          <NavigationProperty Name="tblInsurances" Relationship="DMSModel.FK_tblPatient_tblInsurance" FromRole="tblPatient" ToRole="tblInsurance" />
+          <NavigationProperty Name="tblOfficeVisits" Relationship="DMSModel.FK_tblPatient_tblOfficeVisit" FromRole="tblPatient" ToRole="tblOfficeVisit" />
+        </EntityType>
+        <EntityType Name="tblProcedure">
+          <Key>
+            <PropertyRef Name="ProcedureId" />
+          </Key>
+          <Property Name="ProcedureId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfProcedure" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="NoOfHrs" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="AmountCharged" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StaffId" Type="Int64" Nullable="false" />
+          <Property Name="VisitId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblDoctor" Relationship="DMSModel.FK_tblDoctor_tblProcedure" FromRole="tblProcedure" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblOfficeVisit" Relationship="DMSModel.FK_tblOfficeVisit_tblProcedure" FromRole="tblProcedure" ToRole="tblOfficeVisit" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblLogins" Relationship="DMSModel.FK_tblLogin_tblUserType" FromRole="tblUserType" ToRole="tblLogin" />
+        </EntityType>
+        <Association Name="FK_tblDoctor_tblAppoinment">
+          <End Role="tblDoctor" Type="DMSModel.tblDoctor" Multiplicity="1" />
+          <End Role="tblAppoiment" Type="DMSModel.tblAppoiment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctor">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="tblAppoiment">
+              <PropertyRef Name="DoctorAssigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblAppoinment">
+          <End Role="tblAppoiment" Type="DMSModel.tblAppoiment" Multiplicity="1" />
+          <End Role="tblOfficeVisit" Type="DMSModel.tblOfficeVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAppoiment">
+              <PropertyRef Name="AppoinmentNo" />
+            </Principal>
+            <Dependent Role="tblOfficeVisit">
+              <PropertyRef Name="AppoinmentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblAppoinment">
+          <End Role="tblPatient" Type="DMSModel.tblPatient" Multiplicity="1" />
+          <End Role="tblAppoiment" Type="DMSModel.tblAppoiment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblAppoiment">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDoctor_tblProcedure">
+          <End Role="tblDoctor" Type="DMSModel.tblDoctor" Multiplicity="1" />
+          <End Role="tblProcedure" Type="DMSModel.tblProcedure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctor">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="tblProcedure">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDoctorType_tblDoctor">
+          <End Role="tblDoctorType" Type="DMSModel.tblDoctorType" Multiplicity="1" />
+          <End Role="tblDoctor" Type="DMSModel.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctorType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DoctorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblDoctor">
+          <End Role="tblLogin" Type="DMSModel.tblLogin" Multiplicity="1" />
+          <End Role="tblDoctor" Type="DMSModel.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLogin">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblEmployee">
+          <End Role="tblLogin" Type="DMSModel.tblLogin" Multiplicity="1" />
+          <End Role="tblEmployee" Type="DMSModel.tblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLogin">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblEmployee">
+              <PropertyRef Name="LoginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblInsurance">
+          <End Role="tblPatient" Type="DMSModel.tblPatient" Multiplicity="1" />
+          <End Role="tblInsurance" Type="DMSModel.tblInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblInsurance">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblInvoice">
+          <End Role="tblOfficeVisit" Type="DMSModel.tblOfficeVisit" Multiplicity="1" />
+          <End Role="tblInvoice" Type="DMSModel.tblInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOfficeVisit">
+              <PropertyRef Name="VisitId" />
+            </Principal>
+            <Dependent Role="tblInvoice">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_tblUserType">
+          <End Role="tblUserType" Type="DMSModel.tblUserType" Multiplicity="1" />
+          <End Role="tblLogin" Type="DMSModel.tblLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="tblLogin">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOfficeVisit_tblProcedure">
+          <End Role="tblOfficeVisit" Type="DMSModel.tblOfficeVisit" Multiplicity="1" />
+          <End Role="tblProcedure" Type="DMSModel.tblProcedure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOfficeVisit">
+              <PropertyRef Name="VisitId" />
+            </Principal>
+            <Dependent Role="tblProcedure">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPatient_tblOfficeVisit">
+          <End Role="tblPatient" Type="DMSModel.tblPatient" Multiplicity="1" />
+          <End Role="tblOfficeVisit" Type="DMSModel.tblOfficeVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPatient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="tblOfficeVisit">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSEntities">
+          <EntitySetMapping Name="tblAppoiments">
+            <EntityTypeMapping TypeName="DMSModel.tblAppoiment">
+              <MappingFragment StoreEntitySet="tblAppoiment">
+                <ScalarProperty Name="AppoinmentNo" ColumnName="AppoinmentNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="DoctorAssigned" ColumnName="DoctorAssigned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoctors">
+            <EntityTypeMapping TypeName="DMSModel.tblDoctor">
+              <MappingFragment StoreEntitySet="tblDoctor">
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HourlyRate" ColumnName="HourlyRate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="DoctorTypeId" ColumnName="DoctorTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoctorTypes">
+            <EntityTypeMapping TypeName="DMSModel.tblDoctorType">
+              <MappingFragment StoreEntitySet="tblDoctorType">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployees">
+            <EntityTypeMapping TypeName="DMSModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInsurances">
+            <EntityTypeMapping TypeName="DMSModel.tblInsurance">
+              <MappingFragment StoreEntitySet="tblInsurance">
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="ContractPrecentage" ColumnName="ContractPrecentage" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoices">
+            <EntityTypeMapping TypeName="DMSModel.tblInvoice">
+              <MappingFragment StoreEntitySet="tblInvoice">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+                <ScalarProperty Name="DirectPayment" ColumnName="DirectPayment" />
+                <ScalarProperty Name="InsurancePayment" ColumnName="InsurancePayment" />
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogins">
+            <EntityTypeMapping TypeName="DMSModel.tblLogin">
+              <MappingFragment StoreEntitySet="tblLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOfficeVisits">
+            <EntityTypeMapping TypeName="DMSModel.tblOfficeVisit">
+              <MappingFragment StoreEntitySet="tblOfficeVisit">
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Illness" ColumnName="Illness" />
+                <ScalarProperty Name="ToothInvolved" ColumnName="ToothInvolved" />
+                <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+                <ScalarProperty Name="AppoinmentNo" ColumnName="AppoinmentNo" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPatients">
+            <EntityTypeMapping TypeName="DMSModel.tblPatient">
+              <MappingFragment StoreEntitySet="tblPatient">
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FirstVisit" ColumnName="FirstVisit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProcedures">
+            <EntityTypeMapping TypeName="DMSModel.tblProcedure">
+              <MappingFragment StoreEntitySet="tblProcedure">
+                <ScalarProperty Name="ProcedureId" ColumnName="ProcedureId" />
+                <ScalarProperty Name="TypeOfProcedure" ColumnName="TypeOfProcedure" />
+                <ScalarProperty Name="NoOfHrs" ColumnName="NoOfHrs" />
+                <ScalarProperty Name="AmountCharged" ColumnName="AmountCharged" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="DMSModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
