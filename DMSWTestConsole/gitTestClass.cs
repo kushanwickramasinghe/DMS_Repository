@@ -8,6 +8,8 @@ namespace DMSWTestConsole
 {
     class gitTestClass
     {
+        private int id;
         private string name;
+        private int age;
     }
 }
