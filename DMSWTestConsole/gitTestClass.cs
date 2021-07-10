@@ -11,5 +11,7 @@ namespace DMSWTestConsole
         private int id;
         private string name;
         private int age;
+
+        public int Name { get; set; }
     }
 }
